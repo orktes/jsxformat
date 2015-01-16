@@ -7,6 +7,7 @@ describe('Formatters - Attributes', function() {
   it('should split multiple attributes in to own lines in self closing tag', function () {
     var test = '<div foo="foo" bar="bar" baz="baz" />';
 
+    formatter.setOptions({});
     var result = formatter.format(test);
     var lines = result.split('\n');
 
@@ -20,6 +21,7 @@ describe('Formatters - Attributes', function() {
   it('should split multiple attributes in to own lines in opening tag', function () {
     var test = '<div foo="foo" bar="bar" baz="baz"></div>';
 
+    formatter.setOptions({});
     var result = formatter.format(test);
     var lines = result.split('\n');
 
