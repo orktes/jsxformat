@@ -135,6 +135,20 @@ describe('Formatters - Tags', function() {
     lines[4].trim().should.equal('</div>');
   });
 
+  it('should add new lines if tag is an argument to a function', function () {
+    var test = '<div>{this.fooBar(<div />)}</div>';
+
+    formatter.setOptions({});
+    var result = formatter.format(test);
+    var lines = result.split('\n');
+
+    lines[0].trim().should.equal('<div>');
+    lines[1].trim().should.equal('{this.fooBar(');
+    lines[2].trim().should.equal('<div />');
+    lines[3].trim().should.equal(')}');
+    lines[4].trim().should.equal('</div>');
+  });
+
   it('should not add line break after return', function () {
     var test = 'function foo() {\nreturn <div><span /></div>;\n}';
 
