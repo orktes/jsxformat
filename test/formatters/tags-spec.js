@@ -163,6 +163,22 @@ describe('Formatters - Tags', function() {
     lines[4].trim().should.equal('}');
   });
 
+  it('should not add extra line break after return (', function () {
+    var test = 'function foo() {\nreturn (\n  <div><span /></div>\n);\n}';
+
+    formatter.setOptions({});
+    var result = formatter.format(test);
+    var lines = result.split('\n');
+
+    lines[0].trim().should.equal('function foo() {');
+    lines[1].trim().should.equal('return (');
+    lines[2].trim().should.equal('<div>');
+    lines[3].trim().should.equal('<span />');
+    lines[4].trim().should.equal('</div>');
+    lines[5].trim().should.equal(');');
+    lines[6].trim().should.equal('}');
+  });
+
   it('should add line breaks to ternary operations', function () {
     var test = '<div>{true ? <div /> : <div />}</div>';
 
