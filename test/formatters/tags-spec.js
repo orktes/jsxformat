@@ -164,7 +164,7 @@ describe('Formatters - Tags', function() {
   });
 
   it('should not add extra line break after return (', function () {
-    var test = 'function foo() {\nreturn (\n  <div><span /></div>\n);\n}';
+    var test = 'function foo() {\nreturn (\n  <div><span /></div> \n);\n}';
 
     formatter.setOptions({});
     var result = formatter.format(test);
