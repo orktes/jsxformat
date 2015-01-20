@@ -1,7 +1,15 @@
 var should = require('chai').should()
 var fs = require('fs');
+var _ = require('lodash');
 
 var formatter = require('../../lib/index');
+
+function noTrailingWhiteSpaces(content) {
+  var lines = content.split('\n');
+  return should.not.exist(_.find(lines, function (line) {
+    return / $/.test(line);
+  }), 'Should not have trailing white spaces');
+}
 
 describe('Formatters - Tags', function() {
   it('should split tags into multiple rows', function () {
@@ -9,6 +17,8 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     var result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
+
     var lines = result.split('\n');
 
     lines[0].trim().should.equal('<div>');
@@ -22,6 +32,7 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     var result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
 
     var lines = result.split('\n');
 
@@ -38,6 +49,7 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     var result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
 
     var lines = result.split('\n');
 
@@ -53,6 +65,7 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     var result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
 
     var lines = result.split('\n');
 
@@ -64,6 +77,7 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
 
     lines = result.split('\n');
 
@@ -77,6 +91,7 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     var result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
     var lines = result.split('\n');
 
     lines[0].trim().should.equal('<div>');
@@ -89,6 +104,7 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     var result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
     var lines = result.split('\n');
 
     lines[0].trim().should.equal('<div>');
@@ -101,6 +117,7 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
     lines = result.split('\n');
 
     lines[0].trim().should.equal('<div>');
@@ -115,6 +132,7 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     var result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
     var lines = result.split('\n');
 
     lines[0].trim().should.equal('<div>');
@@ -126,6 +144,7 @@ describe('Formatters - Tags', function() {
     test = '<div> <div>Here comes the one self closing tag <avatar /> <avatar /> hello how</div></div>';
 
     result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
     lines = result.split('\n');
 
     lines[0].trim().should.equal('<div>');
@@ -140,6 +159,7 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     var result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
     var lines = result.split('\n');
 
     lines[0].trim().should.equal('<div>');
@@ -154,6 +174,7 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     var result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
     var lines = result.split('\n');
 
     lines[0].trim().should.equal('function foo() {');
@@ -184,6 +205,7 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     var result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
     var lines = result.split('\n');
 
     lines[0].trim().should.equal('<div>');
@@ -200,6 +222,7 @@ describe('Formatters - Tags', function() {
 
     formatter.setOptions({});
     var result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
     var lines = result.split('\n');
 
     lines[0].trim().should.equal('<div>');
@@ -216,6 +239,7 @@ describe('Formatters - Tags', function() {
     });
 
     var result = formatter.format(test);
+    noTrailingWhiteSpaces(result);
     var lines = result.split('\n');
 
     lines[0].trim().should.equal('<div><div>');
