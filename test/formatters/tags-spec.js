@@ -193,6 +193,20 @@ describe('Formatters - Tags', function() {
     lines[4].trim().should.equal('<div />');
     lines[5].trim().should.equal('}');
     lines[6].trim().should.equal('</div>');
+  });
+
+  it('should not add line breaks to objects inside tag attributes', function () {
+    var test = '<div>\n<div attr={{\nfoo: <attributeTag />\n}} />\n</div>';
+
+    formatter.setOptions({});
+    var result = formatter.format(test);
+    var lines = result.split('\n');
+
+    lines[0].trim().should.equal('<div>');
+    lines[1].trim().should.equal('<div attr={{');
+    lines[2].trim().should.equal('foo: <attributeTag />');
+    lines[3].trim().should.equal('}} />');
+    lines[4].trim().should.equal('</div>');
   })
 
   it('should only format tags within range if range is specified', function () {
