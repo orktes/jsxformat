@@ -167,6 +167,23 @@ describe('Formatters - Tags', function() {
     lines[2].trim().should.equal('<div />');
     lines[3].trim().should.equal(')}');
     lines[4].trim().should.equal('</div>');
+
+    test = '<div>{this.fooBar("foo", <div />, bar)}</div>';
+
+    formatter.setOptions({});
+    result = formatter.format(test);
+
+    noTrailingWhiteSpaces(result);
+    lines = result.split('\n');
+
+    lines[0].trim().should.equal('<div>');
+    lines[1].trim().should.equal('{this.fooBar(');
+    lines[2].trim().should.equal('"foo",');
+    lines[3].trim().should.equal('<div />,');
+    lines[4].trim().should.equal('bar');
+    lines[5].trim().should.equal(')}');
+    lines[6].trim().should.equal('</div>');
+
   });
 
   it('should not add line break after return', function () {
