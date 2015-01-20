@@ -1,6 +1,6 @@
 {
   "name": "jsxformat",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "JSX formatting tool",
   "main": "lib/index.js",
   "directories": {
