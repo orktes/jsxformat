@@ -249,6 +249,20 @@ describe('Formatters - Tags', function() {
     lines[4].trim().should.equal('</div>');
   })
 
+  it('should not reformat if tags parent is surrounded by text without line breaks', function () {
+    var test = '<div>\nfoo<div><span>bar</span></div>baz\n</div>';
+
+    formatter.setOptions({});
+    var result = formatter.format(test);
+
+    noTrailingWhiteSpaces(result);
+    var lines = result.split('\n');
+
+    lines[0].trim().should.equal('<div>');
+    lines[1].trim().should.equal('foo<div><span>bar</span></div>baz');
+    lines[2].trim().should.equal('</div>');
+  });
+
   it('should only format tags within range if range is specified', function () {
     var test = '<div><div><p><div /></p></div></div>';
     formatter.setOptions({
